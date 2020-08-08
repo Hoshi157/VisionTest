@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 
 class ViewController: UIViewController {
-
+    
     @IBOutlet var sceneView: ARSCNView!
     
     private let disposeBug = DisposeBag()
@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     private let textLabel: UILabel = {
         let label = UILabel()
         label.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1).withAlphaComponent(0.7)
+        label.numberOfLines = 0
         return label
     }()
     
@@ -54,7 +55,7 @@ class ViewController: UIViewController {
             textLabel.rightAnchor.constraint(equalTo: view.rightAnchor),
             textLabel.leftAnchor.constraint(equalTo: view.leftAnchor),
             textLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            textLabel.heightAnchor.constraint(equalToConstant: 150)
+            textLabel.heightAnchor.constraint(equalToConstant: 200)
         ]
         NSLayoutConstraint.activate(textLabelConstraints)
     }
@@ -64,7 +65,7 @@ class ViewController: UIViewController {
     }
     
     func addPixelBuffer(pixelBuffr: CVPixelBuffer) {
-        viewModel.pixelBuffer.accept(pixelBuffr)
+        viewModel.pixelBuffer(pixelBuffer: pixelBuffr)
     }
 }
 
